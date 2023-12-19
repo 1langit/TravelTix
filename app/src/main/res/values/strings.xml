@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Travel App</string>
+
+    <string-array name="facilities">
+        <item>Makan dan Minum</item>
+        <item>Snack</item>
+        <item>Bantal dan selimut</item>
+        <item>Hiburan</item>
+        <item>Kendaraan antar-jemput</item>
+        <item>Safe travel kit</item>
+        <item>Asuransi perjalanan</item>
+    </string-array>
+
+    <string-array name="stations">
+        <item>Stasiun Gambir - Jakarta</item>
+        <item>Stasiun Hall - Bandung</item>
+        <item>Stasiun Tugu - Yogyakarta</item>
+        <item>Stasiun Gubeng - Surabaya</item>
+        <item>Stasiun Pasar Senen - Jakarta</item>
+        <item>Stasiun Balapan - Solo</item>
+        <item>Stasiun Tawang - Semarang</item>
+        <item>Stasiun Purwokerto - Purwokwrto</item>
+        <item>Stasiun Kejaksan - Cirebon</item>
+        <item>Stasiun Madiun- Madiun</item>
+        <item>Stasiun Kotabaru - Malang</item>
+    </string-array>
+
+    <integer-array name="multiplier">
+        <item>0</item>
+        <item>2</item>
+        <item>7</item>
+        <item>11</item>
+        <item>0</item>
+        <item>8</item>
+        <item>7</item>
+        <item>5</item>
+        <item>3</item>
+        <item>9</item>
+        <item>11</item>
+    </integer-array>
+
+    <string-array name="classes">
+        <item>Ekonomi</item>
+        <item>Bisnis</item>
+        <item>Eksekutif</item>
+        <item>Luxury</item>
+    </string-array>
+
+    <string name="facility1">Makan dan Minum</string>
+    <string name="facility2">Snack</string>
+    <string name="facility3">Bantal dan selimut</string>
+    <string name="facility4">Hiburan</string>
+    <string name="facility5">Mobil antar jemput</string>
+    <string name="facility6">Safe travel kit</string>
+    <string name="facility7">Asuransi perjalanan</string>
+</resources>

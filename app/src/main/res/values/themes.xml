@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.UAS" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="android:windowBackground">@color/body_subtle</item>
+    </style>
+
+    <style name="Theme.UAS" parent="Base.Theme.UAS" />
+
+    <style name="Theme.UAS.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorButtonNormal">@color/blue</item>
+        <item name="android:buttonCornerRadius">20dp</item>
+    </style>
+
+<!--    <style name="input" parent="Widget.AppCompat.EditText">-->
+<!--        <item name="background">@drawable/bg_rect</item>-->
+<!--        <item name="android:padding">12dp</item>-->
+<!--    </style>-->
+
+<!--    <style name="defaultbutton" parent="ShapeAppearanceOverlay.Material3.FloatingActionButton">-->
+<!--        <item name="android:radius">20dp</item>-->
+<!--    </style>-->
+</resources>

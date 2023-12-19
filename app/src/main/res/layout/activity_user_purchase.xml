@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.UserPurchaseActivity"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/lb_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Train name" />
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lb_name"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="Train Name"  />
+
+    <TextView
+        android:id="@+id/lb_origin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_name"
+        android:layout_marginTop="16dp"
+        android:text="Origin and destination" />
+
+    <TextView
+        android:id="@+id/txt_origin_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lb_origin"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="08.00"  />
+
+    <TextView
+        android:id="@+id/txt_destination_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_origin_time"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="08.00"  />
+
+    <ImageView
+        android:id="@+id/v_dir"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@id/lb_origin"
+        android:layout_margin="8dp"
+        android:layout_toEndOf="@+id/txt_origin_time"
+        android:src="@drawable/img_destination" />
+
+    <TextView
+        android:id="@+id/txt_station_origin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lb_origin"
+        android:layout_toEndOf="@id/v_dir"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="Station Name"  />
+
+    <TextView
+        android:id="@+id/txt_station_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_station_origin"
+        android:layout_toEndOf="@id/v_dir"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="Station Name" />
+
+    <TextView
+        android:id="@+id/lb_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_destination_time"
+        android:layout_marginTop="16dp"
+        android:text="Class" />
+
+    <TextView
+        android:id="@+id/txt_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lb_class"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="Class"  />
+
+    <TextView
+        android:id="@+id/lb_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_class"
+        android:layout_marginTop="16dp"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lb_date"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="Date"  />
+
+    <TextView
+        android:id="@+id/lb_facitities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_date"
+        android:layout_marginTop="16dp"
+        android:text="Facilities" />
+
+    <TextView
+        android:id="@+id/txt_facilities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lb_facitities"
+        android:textColor="@color/on_body"
+        android:textSize="18sp"
+        android:text="Facilities" />
+
+    <TextView
+        android:id="@+id/lb_seat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_facilities"
+        android:layout_marginTop="16dp"
+        android:text="Seat" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/lb_seat"
+        android:background="@drawable/bg_rect"
+        android:backgroundTint="@color/white">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/bg_rect"
+            android:minWidth="40dp"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/txt_seat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="16dp"
+            android:background="@drawable/bg_rect"
+            android:text="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/bg_rect"
+            android:minWidth="40dp"
+            android:text="+" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_price"
+        android:layout_marginStart="8dp"
+        android:textSize="16dp"
+        android:text="Price" />
+
+    <TextView
+        android:id="@+id/txt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_order"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/on_body"
+        android:textSize="28dp"
+        android:text="Rp99.000" />
+
+    <Button
+        android:id="@+id/btn_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingVertical="10dp"
+        android:textColor="@color/white"
+        android:text="ORDER NOW" />
+
+</RelativeLayout>
