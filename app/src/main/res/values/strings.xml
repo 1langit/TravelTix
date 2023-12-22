@@ -1,15 +1,5 @@
 <resources>
-    <string name="app_name">Travel App</string>
-
-    <string-array name="facilities">
-        <item>Makan dan Minum</item>
-        <item>Snack</item>
-        <item>Bantal dan selimut</item>
-        <item>Hiburan</item>
-        <item>Kendaraan antar-jemput</item>
-        <item>Safe travel kit</item>
-        <item>Asuransi perjalanan</item>
-    </string-array>
+    <string name="app_name">TravelTix</string>
 
     <string-array name="stations">
         <item>Stasiun Gambir - Jakarta</item>
@@ -25,11 +15,13 @@
         <item>Stasiun Kotabaru - Malang</item>
     </string-array>
 
-    <integer-array name="multiplier">
+    <integer name="initial_price">250000</integer>
+
+    <integer-array name="distance_multiplier">
         <item>0</item>
         <item>2</item>
         <item>7</item>
-        <item>11</item>
+        <item>10</item>
         <item>0</item>
         <item>8</item>
         <item>7</item>
@@ -46,11 +38,21 @@
         <item>Luxury</item>
     </string-array>
 
-    <string name="facility1">Makan dan Minum</string>
+    <string-array name="facilities">
+        <item>Food and drink</item>
+        <item>Snack</item>
+        <item>Pillow and blanket</item>
+        <item>Entertainment</item>
+        <item>Shuttle taxi</item>
+        <item>Safe travel kit</item>
+        <item>Travel insurance</item>
+    </string-array>
+
+    <string name="facility1">Food and drink</string>
     <string name="facility2">Snack</string>
-    <string name="facility3">Bantal dan selimut</string>
-    <string name="facility4">Hiburan</string>
-    <string name="facility5">Mobil antar jemput</string>
+    <string name="facility3">Pillow and blanket</string>
+    <string name="facility4">Entertainment</string>
+    <string name="facility5">Shuttle taxi</string>
     <string name="facility6">Safe travel kit</string>
-    <string name="facility7">Asuransi perjalanan</string>
+    <string name="facility7">Travel insurance</string>
 </resources>

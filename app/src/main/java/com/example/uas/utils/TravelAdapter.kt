@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.uas.databinding.ItemTravelBinding
 import com.example.uas.model.Travel
 
-typealias OnClickItem = (Travel) -> Unit
+private typealias OnClickTravel = (Travel) -> Unit
 
 class TravelAdapter (
     private val listTravel: List<Travel>,
-    private val onClickItem: OnClickItem
+    private val onClickTravel: OnClickTravel
 ) : RecyclerView.Adapter<TravelAdapter.ItemTravelViewHolder>() {
 
     inner class ItemTravelViewHolder(private val binding: ItemTravelBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -22,11 +22,11 @@ class TravelAdapter (
                 txtTimeDestination.text = item.timeDestination
                 txtStationOrigin.text = item.stationOrigin
                 txtStationDestination.text = item.stationDestination
-                txtPrice.text = String.format("Rp%,d", item.price)
+                txtPriceOrDate.text = String.format("Rp%,d", item.price)
             }
 
-            itemView.setOnClickListener{
-                onClickItem(item)
+            itemView.setOnClickListener {
+                onClickTravel(item)
             }
         }
     }

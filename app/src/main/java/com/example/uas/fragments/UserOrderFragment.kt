@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.uas.R
-import com.example.uas.activities.UserPurchaseActivity
+import com.example.uas.activities.UserTicketActivity
 import com.example.uas.databinding.FragmentUserOrderBinding
 import com.example.uas.network.OrderCollection
-import com.example.uas.utils.TravelAdapter
+import com.example.uas.utils.OrderAdapter
 import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class UserOrderFragment : Fragment() {
 
@@ -25,23 +26,32 @@ class UserOrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUserOrderBinding.inflate(layoutInflater)
-//        firebaseAuth = FirebaseAuth.getInstance()
-//        orderCollection = OrderCollection(requireContext())
-//        orderCollection.getItemByUserId(firebaseAuth.currentUser!!.uid)
-//        showUserOrder()
+        firebaseAuth = FirebaseAuth.getInstance()
+        orderCollection = OrderCollection()
+        orderCollection.getAllItem()
+        showUserOrder()
         return binding.root
     }
 
     private fun showUserOrder() {
-        orderCollection.orderListLiveData.observe(this) { travelList ->
-            val travelAdapter = TravelAdapter(travelList) { item ->
-                val intent = Intent(requireContext(), UserPurchaseActivity::class.java)
+        orderCollection.orderListLiveData.observe(viewLifecycleOwner) { orderList ->
+            val userOrder = orderList.filter {
+                it.userId == firebaseAuth.currentUser!!.uid
+            }.sortedBy {
+                SimpleDateFormat("E, d MMM yyyy", Locale.getDefault()).parse(it.date)
+            }
+
+            val orderAdapter = OrderAdapter(userOrder) { item ->
+                val intent = Intent(requireContext(), UserTicketActivity::class.java)
                 intent.putExtra("id", item.id)
                 startActivity(intent)
             }
-            binding.rvOrder.apply {
-                adapter = travelAdapter
-                layoutManager = LinearLayoutManager(requireContext())
+            with(binding) {
+                layoutEmpty.visibility = if (userOrder.isEmpty()) View.VISIBLE else View.GONE
+                rvOrder.apply {
+                    adapter = orderAdapter
+                    layoutManager = LinearLayoutManager(requireContext())
+                }
             }
         }
     }

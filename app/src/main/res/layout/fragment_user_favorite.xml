@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.UserOrderFragment">
+    tools:context=".fragments.UserFavoriteFragment">
 
     <ImageView
         android:layout_width="match_parent"
@@ -22,7 +22,48 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:text="Order History" />
+        android:text="Favorite" />
+
+    <LinearLayout
+        android:id="@+id/layout_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_title"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_rect"
+        android:backgroundTint="@color/body"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date" />
+
+        <EditText
+            android:id="@+id/edt_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rect"
+            android:focusable="false"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/layout_filter"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/on_body"
+        android:text="My Favorite" />
 
     <LinearLayout
         android:id="@+id/layout_empty"
@@ -43,14 +84,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="No orders yet" />
+            android:text="No favorite yet" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_order"
+        android:id="@+id/rv_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_title"
+        android:layout_below="@id/txt_header"
         tools:listitem="@layout/item_travel"/>
 
 </RelativeLayout>

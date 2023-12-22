@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.UserTicketActivity"
+    android:background="@color/blue">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_arrow_back" />
+
+    <LinearLayout
+        android:id="@+id/layout_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/img_ticket"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_train_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Train Name"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="28dp">
+
+            <ImageView
+                android:id="@+id/v_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_train_name"
+                android:padding="10dp"
+                android:src="@drawable/ic_line" />
+
+            <TextView
+                android:id="@+id/txt_time_origin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/v_line"
+                android:layout_toEndOf="@id/v_line"
+                android:text="08.00"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_time_destintion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_time_origin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/v_line"
+                android:text="08.00"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_station_origin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/v_line"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@id/txt_time_origin"
+                android:text="Station Origin" />
+
+            <TextView
+                android:id="@+id/txt_station_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/txt_time_destintion"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@id/txt_time_destintion"
+                android:text="Station Origin" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txt_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class" />
+
+        <ImageView
+            android:id="@+id/img_qr"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/img_qr"/>
+
+        <TextView
+            android:id="@+id/txt_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDER ID" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/layout_ticket"
+        android:layout_alignEnd="@id/layout_ticket"
+        android:layout_below="@id/layout_ticket"
+        android:translationY="-34dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/v_train"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_train" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/v_train"
+            android:layout_marginStart="8dp"
+            android:text="32 Desember 2023" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/txt_seat"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_person" />
+
+        <TextView
+            android:id="@+id/txt_seat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

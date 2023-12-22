@@ -8,6 +8,6 @@ data class Travel(
     var stationOrigin: String = "",
     var stationDestination: String = "",
     var klass: String = "",
-    var facilities: String = "",
+    var facilities: ArrayList<String> = arrayListOf(),
     var price: Int = 0
 )

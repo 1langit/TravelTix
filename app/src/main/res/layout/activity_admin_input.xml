@@ -18,8 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_name"
-        android:background="@drawable/bg_rect"
         android:padding="12dp"
+        android:background="@drawable/bg_rect"
+        android:maxLines="1"
+        android:inputType="text"
         android:hint="Enter name" />
 
     <TextView
@@ -39,7 +41,7 @@
         android:padding="12dp"
         android:background="@drawable/bg_rect"
         android:focusable="false"
-        android:hint="08.00" />
+        android:hint=" -- : -- " />
 
     <Spinner
         android:id="@+id/spn_origin"
@@ -70,7 +72,7 @@
         android:padding="12dp"
         android:background="@drawable/bg_rect"
         android:focusable="false"
-        android:hint="08.00" />
+        android:hint=" -- : -- " />
 
     <Spinner
         android:id="@+id/spn_destination"
@@ -465,6 +467,7 @@
         android:layout_marginEnd="6dp"
         android:textStyle="bold"
         android:textSize="24sp"
+        android:textColor="@color/on_body"
         android:text="Rp199.000" />
 
     <Button

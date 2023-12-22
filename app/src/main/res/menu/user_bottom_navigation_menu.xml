@@ -12,6 +12,11 @@
         android:title="Order" />
 
     <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorite" />
+
+    <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person"
         android:title="Profile" />

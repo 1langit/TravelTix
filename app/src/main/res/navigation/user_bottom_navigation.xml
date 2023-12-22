@@ -16,6 +16,11 @@
         android:label="fragment_user_order"
         tools:layout="@layout/fragment_user_order" />
     <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.uas.fragments.UserFavoriteFragment"
+        android:label="fragment_user_favorite"
+        tools:layout="@layout/fragment_user_favorite" />
+    <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.uas.fragments.UserProfileFragment"
         android:label="fragment_user_profile"

@@ -2,8 +2,6 @@ package com.example.uas.activities
 
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
@@ -13,27 +11,19 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import com.example.uas.R
-import com.example.uas.database.TravelDao
-import com.example.uas.database.TravelRoomDatabase
 import com.example.uas.databinding.ActivityAdminInputBinding
-import com.example.uas.model.PendingTravel
 import com.example.uas.model.Travel
 import com.example.uas.network.TravelCollection
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 import kotlin.math.abs
 
 class AdminInputActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAdminInputBinding
     private lateinit var travelCollection: TravelCollection
-    private lateinit var travelDao: TravelDao
-    private lateinit var executorService: ExecutorService
-    lateinit var travel: Travel
-    var distancePrice = 0
-    var finalPrice = 0
+    private lateinit var travel: Travel
+    private var price = 0.0
+    private var finalPrice = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,20 +34,35 @@ class AdminInputActivity : AppCompatActivity() {
         title = "Travel Item"
 
         travelCollection = TravelCollection()
-        executorService = Executors.newSingleThreadExecutor()
-        travelDao = TravelRoomDatabase.getDatabase(this)!!.travelDao()!!
+
+//        val adapter = object : ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listOf("---select a station---") + resources.getStringArray(R.array.stations)) {
+//            override fun isEnabled(position: Int): Boolean {
+//                return position != 0
+//            }
+//            override fun getDropDownView(
+//                position: Int,
+//                convertView: View?,
+//                parent: ViewGroup
+//            ): View {
+//                val view: TextView = super.getDropDownView(position, convertView, parent) as TextView
+//                if(position == 0) view.setTextColor(Color.GRAY)
+//                return view
+//            }
+//        }
 
         with(binding) {
             val cardFacilities = arrayOf(cardFacility1, cardFacility2, cardFacility3, cardFacility4, cardFacility5, cardFacility6, cardFacility7)
             val facilityState = BooleanArray(cardFacilities.size)
             val facilityName = resources.getStringArray(R.array.facilities)
             val stationName = resources.getStringArray(R.array.stations)
-            val stationDistance = resources.getIntArray(R.array.multiplier)
+            val stationDistance = resources.getIntArray(R.array.distance_multiplier)
             val className = resources.getStringArray(R.array.classes)
-            var facilities = ""
+            var facilities = arrayListOf<String>()
             var origin = 0
             var destination = 0
             var klass = 1.0
+//            spnOrigin.adapter = adapter
+//            spnDestination.adapter = adapter
 
             val id = intent.getStringExtra("id")
             if (!id.isNullOrEmpty()) {
@@ -71,9 +76,8 @@ class AdminInputActivity : AppCompatActivity() {
                         spnDestination.setSelection(stationName.indexOf(data.stationDestination))
                         spnClass.setSelection(className.indexOf(data.klass))
                         facilities = data.facilities
-                        val selectedFacility = data.facilities.split(", ")
-                        for ((index, station) in facilityName.withIndex()) {
-                            if (selectedFacility.contains(station)) {
+                        for ((index, facility) in facilityName.withIndex()) {
+                            if (facilities.contains(facility)) {
                                 facilityState[index] = true
                                 cardFacilities[index].showNext()
                                 finalPrice += 10000
@@ -126,9 +130,7 @@ class AdminInputActivity : AppCompatActivity() {
                     }
                     calculatePrice(origin, destination, klass)
                 }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
             for ((index, cardfacility) in cardFacilities.withIndex()) {
@@ -136,10 +138,8 @@ class AdminInputActivity : AppCompatActivity() {
                     cardfacility.showNext()
                     facilityState[index] = !facilityState[index]
                     if (facilityState[index]) {
-                        facilities += "${facilityName[index]}, "
                         finalPrice += 10000
                     } else {
-                        facilities = facilities.replace("${facilityName[index]}, ", "")
                         finalPrice -= 10000
                     }
                     txtPrice.text = String.format("Rp%,d", finalPrice)
@@ -150,54 +150,50 @@ class AdminInputActivity : AppCompatActivity() {
                 val inpName = edtName.text.toString()
                 val inpTimeOrigin = timeOrigin.text.toString()
                 val inpTimeDestination = timeDestination.text.toString()
-                if (!facilities.isBlank()) {
-                    facilities = facilities.substring(0, facilities.length - 2)
+                for ((index, facility) in facilityState.withIndex()) {
+                    if (facility) facilities.add(facilityName[index])
                 }
 
                 if (inpName.isBlank() || inpTimeOrigin.isBlank() || inpTimeDestination.isBlank()) {
                     Toast.makeText(this@AdminInputActivity, "Please fill in all required info", Toast.LENGTH_SHORT).show()
                 } else {
-                    if (isOnline(this@AdminInputActivity)) {
-                        if (id.isNullOrEmpty()) {
-                            travelCollection.addItem(
-                                Travel(
-                                    trainName = inpName,
-                                    timeOrigin = inpTimeOrigin,
-                                    timeDestination = inpTimeDestination,
-                                    stationOrigin = spnOrigin.selectedItem as String,
-                                    stationDestination = spnDestination.selectedItem as String,
-                                    klass = spnClass.selectedItem as String,
-                                    facilities = facilities,
-                                    price = finalPrice
-                                )
+                    if (id.isNullOrEmpty()) {
+                        travelCollection.addItem(
+                            Travel(
+                                trainName = inpName,
+                                timeOrigin = inpTimeOrigin,
+                                timeDestination = inpTimeDestination,
+                                stationOrigin = spnOrigin.selectedItem as String,
+                                stationDestination = spnDestination.selectedItem as String,
+                                klass = spnClass.selectedItem as String,
+                                facilities = facilities,
+                                price = finalPrice
                             )
-                            Toast.makeText(
-                                this@AdminInputActivity,
-                                "Add item success!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            travelCollection.updateItem(
-                                Travel(
-                                    id = id,
-                                    trainName = inpName,
-                                    timeOrigin = inpTimeOrigin,
-                                    timeDestination = inpTimeDestination,
-                                    stationOrigin = spnOrigin.selectedItem as String,
-                                    stationDestination = spnDestination.selectedItem as String,
-                                    klass = spnClass.selectedItem as String,
-                                    facilities = facilities,
-                                    price = finalPrice
-                                )
-                            )
-                            Toast.makeText(
-                                this@AdminInputActivity,
-                                "Update item success!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                        )
+                        Toast.makeText(
+                            this@AdminInputActivity,
+                            "Add item success!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
-
+                        travelCollection.updateItem(
+                            Travel(
+                                id = id,
+                                trainName = inpName,
+                                timeOrigin = inpTimeOrigin,
+                                timeDestination = inpTimeDestination,
+                                stationOrigin = spnOrigin.selectedItem as String,
+                                stationDestination = spnDestination.selectedItem as String,
+                                klass = spnClass.selectedItem as String,
+                                facilities = facilities,
+                                price = finalPrice
+                            )
+                        )
+                        Toast.makeText(
+                            this@AdminInputActivity,
+                            "Update item success!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     finish()
                 }
@@ -206,21 +202,19 @@ class AdminInputActivity : AppCompatActivity() {
     }
 
     private fun calculatePrice(origin: Int, destination: Int, klass: Double) {
-        val distance = abs(origin - destination)
-        finalPrice -= distancePrice
-        distancePrice = ((200000 * (distance / 10)) * klass).toInt()
-        finalPrice += distancePrice
+        val initialPrice = resources.getInteger(R.integer.initial_price)
+        val distanceMult = abs(origin.toDouble() - destination.toDouble()) / 10
+        finalPrice -= price.toInt()
+        price = initialPrice * distanceMult * klass
+        finalPrice += price.toInt()
         binding.txtPrice.text = String.format("Rp%,d", finalPrice)
-        Toast.makeText(this@AdminInputActivity, "${(200000 * (distance / 10)) * klass}", Toast.LENGTH_SHORT).show()
     }
 
-    private fun isOnline(context: Context) : Boolean {
+    private fun checkNetwork(context: Context) : Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                return true
-            }
+        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            return true
         }
         return false
     }
@@ -241,24 +235,6 @@ class AdminInputActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun insert(travel: PendingTravel) {
-        executorService.execute {
-            travelDao.insert(travel)
-        }
-    }
-
-    private fun update(travel: PendingTravel) {
-        executorService.execute {
-            travelDao.update(travel)
-        }
-    }
-
-    private fun delete(travel: PendingTravel) {
-        executorService.execute {
-            travelDao.delete(travel)
         }
     }
 }

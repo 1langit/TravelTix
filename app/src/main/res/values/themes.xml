@@ -14,13 +14,4 @@
         <item name="colorButtonNormal">@color/blue</item>
         <item name="android:buttonCornerRadius">20dp</item>
     </style>
-
-<!--    <style name="input" parent="Widget.AppCompat.EditText">-->
-<!--        <item name="background">@drawable/bg_rect</item>-->
-<!--        <item name="android:padding">12dp</item>-->
-<!--    </style>-->
-
-<!--    <style name="defaultbutton" parent="ShapeAppearanceOverlay.Material3.FloatingActionButton">-->
-<!--        <item name="android:radius">20dp</item>-->
-<!--    </style>-->
 </resources>

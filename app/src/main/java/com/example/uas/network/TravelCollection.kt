@@ -3,7 +3,6 @@ package com.example.uas.network
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.uas.model.Travel
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 class TravelCollection {

@@ -4,184 +4,231 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UserPurchaseActivity"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/lb_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Train name" />
-
-    <TextView
-        android:id="@+id/txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lb_name"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="Train Name"  />
-
-    <TextView
-        android:id="@+id/lb_origin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_name"
-        android:layout_marginTop="16dp"
-        android:text="Origin and destination" />
-
-    <TextView
-        android:id="@+id/txt_origin_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lb_origin"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="08.00"  />
-
-    <TextView
-        android:id="@+id/txt_destination_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_origin_time"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="08.00"  />
+    tools:context=".activities.UserPurchaseActivity">
 
     <ImageView
-        android:id="@+id/v_dir"
+        android:id="@+id/img_cover"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_below="@id/lb_origin"
-        android:layout_margin="8dp"
-        android:layout_toEndOf="@+id/txt_origin_time"
-        android:src="@drawable/img_destination" />
+        android:layout_height="320dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_train" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:padding="16dp"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_arrow_back" />
 
     <TextView
-        android:id="@+id/txt_station_origin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lb_origin"
-        android:layout_toEndOf="@id/v_dir"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="Station Name"  />
+        android:layout_toEndOf="@id/btn_back"
+        android:layout_alignTop="@id/btn_back"
+        android:padding="11dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:text="Order Ticket" />
 
-    <TextView
-        android:id="@+id/txt_station_destination"
+    <ViewSwitcher
+        android:id="@+id/btn_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_station_origin"
-        android:layout_toEndOf="@id/v_dir"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="Station Name" />
+        android:layout_alignEnd="@id/img_cover"
+        android:layout_below="@id/img_cover"
+        android:padding="20dp">
 
-    <TextView
-        android:id="@+id/lb_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_destination_time"
-        android:layout_marginTop="16dp"
-        android:text="Class" />
-
-    <TextView
-        android:id="@+id/txt_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lb_class"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="Class"  />
-
-    <TextView
-        android:id="@+id/lb_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_class"
-        android:layout_marginTop="16dp"
-        android:text="Date" />
-
-    <TextView
-        android:id="@+id/txt_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lb_date"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="Date"  />
-
-    <TextView
-        android:id="@+id/lb_facitities"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_date"
-        android:layout_marginTop="16dp"
-        android:text="Facilities" />
-
-    <TextView
-        android:id="@+id/txt_facilities"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lb_facitities"
-        android:textColor="@color/on_body"
-        android:textSize="18sp"
-        android:text="Facilities" />
-
-    <TextView
-        android:id="@+id/lb_seat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_facilities"
-        android:layout_marginTop="16dp"
-        android:text="Seat" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_below="@id/lb_seat"
-        android:background="@drawable/bg_rect"
-        android:backgroundTint="@color/white">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_minus"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:background="@drawable/bg_rect"
-            android:minWidth="40dp"
+            android:src="@drawable/ic_favorite_border" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorite" />
+
+    </ViewSwitcher>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_cover"
+        android:paddingTop="20dp"
+        android:paddingHorizontal="24dp">
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/on_body"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:text="Train Name"  />
+
+        <TextView
+            android:id="@+id/lb_origin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_name"
+            android:layout_marginTop="16dp"
+            android:text="Origin and destination" />
+
+        <TextView
+            android:id="@+id/txt_origin_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lb_origin"
+            android:textColor="@color/on_body"
+            android:textSize="18sp"
+            android:text="08.00"  />
+
+        <TextView
+            android:id="@+id/txt_destination_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_origin_time"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/on_body"
+            android:textSize="18sp"
+            android:text="08.00"  />
+
+        <ImageView
+            android:id="@+id/v_dir"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_below="@id/lb_origin"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@+id/txt_origin_time"
+            android:src="@drawable/img_destination" />
+
+        <TextView
+            android:id="@+id/txt_station_origin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lb_origin"
+            android:layout_toEndOf="@id/v_dir"
+            android:textColor="@color/on_body"
+            android:textSize="18sp"
+            android:text="Station Name"  />
+
+        <TextView
+            android:id="@+id/txt_station_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_station_origin"
+            android:layout_toEndOf="@id/v_dir"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/on_body"
+            android:textSize="18sp"
+            android:text="Station Name" />
+
+        <TextView
+            android:id="@+id/lb_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_destination_time"
+            android:layout_marginTop="16dp"
+            android:text="Class" />
+
+        <TextView
+            android:id="@+id/txt_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lb_class"
+            android:textColor="@color/on_body"
+            android:textSize="18sp"
+            android:text="Class"  />
+
+        <TextView
+            android:id="@+id/lb_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_class"
+            android:layout_marginTop="16dp"
+            android:text="Date" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lb_date"
+            android:textColor="@color/on_body"
+            android:textSize="18sp"
+            android:text="Date"  />
+
+        <TextView
+            android:id="@+id/lb_facitities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_date"
+            android:layout_marginTop="16dp"
+            android:text="Facilities" />
+
+        <TextView
+            android:id="@+id/txt_facilities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lb_facitities"
+            android:textColor="@color/on_body"
+            android:textSize="18sp"
             android:text="-" />
 
         <TextView
-            android:id="@+id/txt_seat"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingVertical="12dp"
-            android:paddingHorizontal="16dp"
-            android:background="@drawable/bg_rect"
-            android:text="1" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_plus"
+            android:id="@+id/lb_seat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:background="@drawable/bg_rect"
-            android:minWidth="40dp"
-            android:text="+" />
+            android:layout_below="@id/txt_facilities"
+            android:layout_marginTop="16dp"
+            android:text="Seat" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/lb_seat"
+            android:background="@drawable/bg_rect"
+            android:backgroundTint="@color/white">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/bg_rect"
+                android:minWidth="40dp"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/txt_seat"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/bg_rect"
+                android:text="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/bg_rect"
+                android:minWidth="40dp"
+                android:text="+" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/txt_price"
-        android:layout_marginStart="8dp"
+        android:layout_above="@id/btn_order"
+        android:layout_alignStart="@id/btn_order"
         android:textSize="16dp"
         android:text="Price" />
 
@@ -190,8 +237,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/btn_order"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="8dp"
+        android:layout_alignEnd="@id/btn_order"
         android:textStyle="bold"
         android:textColor="@color/on_body"
         android:textSize="28dp"
@@ -202,7 +248,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingVertical="10dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         android:textColor="@color/white"
         android:text="ORDER NOW" />
 
